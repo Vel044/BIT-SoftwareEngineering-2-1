@@ -1,0 +1,293 @@
+orderid: 0001
+orderid: 0002
+orderid: 0003
+orderid: 0004
+orderid: 0005
+orderid: 0006
+orderid: 0007
+orderid: 0008
+orderid: 0009
+orderid: 0010
+orderid: 0011
+orderid: 0012
+orderid: 0013
+orderid: 0014
+orderid: 0015
+orderid: 0016
+orderid: 0017
+orderid: 0018
+orderid: 0019
+orderid: 0020
+orderid: 0021
+orderid: 0022
+orderid: 0023
+orderid: 0024
+orderid: 0025
+orderid: 0026
+orderid: 0027
+orderid: 0028
+orderid: 0029
+orderid: 0030
+orderid: 0031
+orderid: 0032
+orderid: 0033
+orderid: 0034
+orderid: 0035
+orderid: 0036
+orderid: 0037
+orderid: 0038
+orderid: 0039
+orderid: 0040
+orderid: 0041
+orderid: 0042
+orderid: 0043
+orderid: 0044
+orderid: 0045
+orderid: 0046
+orderid: 0047
+orderid: 0048
+orderid: 0049
+orderid: 0050
+orderid: 0051
+orderid: 0052
+orderid: 0053
+orderid: 0054
+orderid: 0055
+orderid: 0056
+orderid: 0057
+orderid: 0058
+orderid: 0059
+orderid: 0060
+orderid: 0061
+orderid: 0062
+orderid: 0063
+orderid: 0064
+orderid: 0065
+orderid: 0066
+orderid: 0067
+orderid: 0068
+orderid: 0069
+orderid: 0070
+orderid: 0071
+orderid: 0072
+orderid: 0073
+orderid: 0074
+orderid: 0075
+orderid: 0076
+orderid: 0077
+orderid: 0078
+orderid: 0079
+orderid: 0080
+orderid: 0081
+orderid: 0082
+orderid: 0083
+orderid: 0084
+orderid: 0085
+orderid: 0086
+orderid: 0087
+orderid: 0088
+orderid: 0089
+orderid: 0090
+orderid: 0091
+orderid: 0092
+orderid: 0093
+deal--price:  85.5  quantity: 671  buyorder:0093  sellorder:0001
+orderid: 0094
+orderid: 0095
+orderid: 0096
+deal--price:  62.5  quantity: 495  buyorder:0096  sellorder:0004
+orderid: 0097
+orderid: 0098
+deal--price:  69.5  quantity: 189  sellorder:0098  buyorder:0037
+orderid: 0099
+deal--price:  39.5  quantity: 552  buyorder:0099  sellorder:0007
+orderid: 0100
+deleted order:orderid: 0043, stockid:0583, price:   28.0, quantity:  302, b/s: b
+deleted order:orderid: 0024, stockid:0707, price:   16.0, quantity:  331, b/s: s
+buy orders:
+sell orders:
+orderid: 0031, stockid:0782, price:   19.0, quantity:  308, b/s: s
+deleted order:orderid: 0020, stockid:0665, price:   90.0, quantity:  410, b/s: b
+not found
+buy orders:
+sell orders:
+deleted order:orderid: 0098, stockid:0845, price:   66.0, quantity:  602, b/s: s
+buy orders:
+sell orders:
+orderid: 0094, stockid:0802, price:   40.0, quantity:  871, b/s: s
+orderid: 0033, stockid:0802, price:   48.0, quantity:  268, b/s: s
+buy orders:
+orderid: 0017, stockid:0632, price:   13.0, quantity:  585, b/s: b
+sell orders:
+deleted order:orderid: 0075, stockid:0600, price:   29.0, quantity:  899, b/s: b
+buy orders:
+orderid: 0087, stockid:0727, price:   37.0, quantity:  893, b/s: b
+sell orders:
+not found
+deleted order:orderid: 0052, stockid:0678, price:   59.0, quantity:  239, b/s: b
+buy orders:
+sell orders:
+orderid: 0080, stockid:0652, price:    3.0, quantity:  916, b/s: s
+deleted order:orderid: 0081, stockid:0662, price:   83.0, quantity:  780, b/s: b
+buy orders:
+orderid: 0079, stockid:0642, price:   54.0, quantity:  820, b/s: b
+sell orders:
+orderid: 0018, stockid:0642, price:   61.0, quantity:  450, b/s: s
+buy orders:
+orderid: 0012, stockid:0580, price:    7.0, quantity:  569, b/s: b
+sell orders:
+deleted order:orderid: 0058, stockid:0743, price:   14.0, quantity:  121, b/s: b
+buy orders:
+orderid: 0072, stockid:0567, price:   51.0, quantity:   75, b/s: b
+sell orders:
+buy orders:
+orderid: 0005, stockid:0831, price:    4.0, quantity:  591, b/s: b
+sell orders:
+orderid: 0097, stockid:0831, price:   18.0, quantity:  695, b/s: s
+deleted order:orderid: 0035, stockid:0825, price:   76.0, quantity:  229, b/s: b
+buy orders:
+orderid: 0096, stockid:0822, price:   69.0, quantity:  336, b/s: b
+sell orders:
+deleted order:orderid: 0064, stockid:0809, price:   68.0, quantity:    2, b/s: b
+deleted order:orderid: 0013, stockid:0590, price:   55.0, quantity:  433, b/s: s
+buy orders:
+sell orders:
+orderid: 0089, stockid:0747, price:   34.0, quantity:  854, b/s: s
+deleted order:orderid: 0041, stockid:0564, price:   31.0, quantity:  342, b/s: b
+buy orders:
+orderid: 0006, stockid:0841, price:   53.0, quantity:  688, b/s: b
+sell orders:
+buy orders:
+orderid: 0082, stockid:0671, price:   31.0, quantity:  877, b/s: b
+sell orders:
+deleted order:orderid: 0019, stockid:0655, price:   10.0, quantity:  546, b/s: s
+buy orders:
+sell orders:
+orderid: 0060, stockid:0766, price:   42.0, quantity:   81, b/s: s
+deleted order:orderid: 0015, stockid:0613, price:   84.0, quantity:  393, b/s: s
+deleted order:orderid: 0096, stockid:0822, price:   69.0, quantity:  336, b/s: b
+buy orders:
+sell orders:
+orderid: 0053, stockid:0691, price:   40.0, quantity:  104, b/s: s
+deleted order:orderid: 0093, stockid:0789, price:   92.0, quantity:  104, b/s: b
+not found
+buy orders:
+orderid: 0046, stockid:0616, price:    5.0, quantity:  126, b/s: b
+sell orders:
+deleted order:orderid: 0070, stockid:0871, price:   23.0, quantity:  883, b/s: b
+buy orders:
+sell orders:
+orderid: 0045, stockid:0606, price:   56.0, quantity:  262, b/s: s
+buy orders:
+sell orders:
+deleted order:orderid: 0047, stockid:0626, price:   85.0, quantity:  223, b/s: b
+buy orders:
+orderid: 0038, stockid:0858, price:   54.0, quantity:  285, b/s: b
+sell orders:
+deleted order:orderid: 0076, stockid:0609, price:   77.0, quantity:  996, b/s: b
+not found
+buy orders:
+sell orders:
+orderid: 0062, stockid:0786, price:   71.0, quantity:   41, b/s: s
+deleted order:orderid: 0053, stockid:0691, price:   40.0, quantity:  104, b/s: s
+buy orders:
+orderid: 0040, stockid:0551, price:   50.0, quantity:  245, b/s: b
+sell orders:
+buy orders:
+orderid: 0055, stockid:0711, price:   36.0, quantity:   64, b/s: b
+sell orders:
+deleted order:orderid: 0030, stockid:0773, price:   70.0, quantity:  444, b/s: s
+buy orders:
+sell orders:
+buy orders:
+sell orders:
+orderid: 0048, stockid:0636, price:   34.0, quantity:   87, b/s: s
+not found
+buy orders:
+orderid: 0026, stockid:0730, price:   45.0, quantity:  291, b/s: b
+sell orders:
+not found
+deleted order:orderid: 0085, stockid:0704, price:    9.0, quantity:  933, b/s: s
+buy orders:
+sell orders:
+deleted order:orderid: 0082, stockid:0671, price:   31.0, quantity:  877, b/s: b
+buy orders:
+sell orders:
+orderid: 0028, stockid:0750, price:   41.0, quantity:  483, b/s: s
+buy orders:
+orderid: 0012, stockid:0580, price:    7.0, quantity:  569, b/s: b
+sell orders:
+deleted order:orderid: 0059, stockid:0753, price:   94.0, quantity:  985, b/s: s
+buy orders:
+sell orders:
+orderid: 0021, stockid:0675, price:   39.0, quantity:  506, b/s: s
+deleted order:orderid: 0088, stockid:0737, price:   86.0, quantity:  758, b/s: s
+deleted order:orderid: 0036, stockid:0835, price:   25.0, quantity:  325, b/s: s
+buy orders:
+orderid: 0014, stockid:0600, price:   36.0, quantity:  529, b/s: b
+sell orders:
+deleted order:orderid: 0065, stockid:0818, price:   49.0, quantity:   98, b/s: s
+buy orders:
+sell orders:
+buy orders:
+orderid: 0099, stockid:0854, price:   46.0, quantity:  104, b/s: b
+sell orders:
+deleted order:orderid: 0042, stockid:0574, price:   79.0, quantity:  206, b/s: s
+buy orders:
+orderid: 0006, stockid:0841, price:   53.0, quantity:  688, b/s: b
+sell orders:
+buy orders:
+sell orders:
+orderid: 0092, stockid:0779, price:   11.0, quantity:  678, b/s: s
+not found
+buy orders:
+sell orders:
+orderid: 0091, stockid:0769, price:   63.0, quantity:  814, b/s: s
+deleted order:orderid: 0048, stockid:0636, price:   34.0, quantity:   87, b/s: s
+not found
+buy orders:
+orderid: 0084, stockid:0694, price:   60.0, quantity:  837, b/s: b
+sell orders:
+deleted order:orderid: 0025, stockid:0717, price:   64.0, quantity:  427, b/s: s
+buy orders:
+sell orders:
+buy orders:
+sell orders:
+orderid: 0077, stockid:0619, price:   25.0, quantity:  860, b/s: s
+deleted order:orderid: 0002, stockid:0799, price:   27.0, quantity:  535, b/s: b
+buy orders:
+sell orders:
+deleted order:orderid: 0099, stockid:0854, price:   46.0, quantity:  104, b/s: b
+deleted order:orderid: 0080, stockid:0652, price:    3.0, quantity:  916, b/s: s
+buy orders:
+sell orders:
+not found
+deleted order:orderid: 0057, stockid:0734, price:   65.0, quantity:   24, b/s: s
+buy orders:
+sell orders:
+deleted order:orderid: 0054, stockid:0701, price:   88.0, quantity:  200, b/s: s
+buy orders:
+sell orders:
+orderid: 0050, stockid:0658, price:   62.0, quantity:  279, b/s: s
+buy orders:
+sell orders:
+deleted order:orderid: 0031, stockid:0782, price:   19.0, quantity:  308, b/s: s
+buy orders:
+sell orders:
+deleted order:orderid: 0060, stockid:0766, price:   42.0, quantity:   81, b/s: s
+deleted order:orderid: 0008, stockid:0864, price:   81.0, quantity:  648, b/s: b
+buy orders:
+orderid: 0067, stockid:0838, price:   45.0, quantity:   58, b/s: b
+sell orders:
+not found
+buy orders:
+sell orders:
+buy orders:
+sell orders:
+orderid: 0050, stockid:0658, price:   62.0, quantity:  279, b/s: s
+deleted order:orderid: 0014, stockid:0600, price:   36.0, quantity:  529, b/s: b
+buy orders:
+sell orders:
+buy orders:
+sell orders:
+deleted order:orderid: 0091, stockid:0769, price:   63.0, quantity:  814, b/s: s

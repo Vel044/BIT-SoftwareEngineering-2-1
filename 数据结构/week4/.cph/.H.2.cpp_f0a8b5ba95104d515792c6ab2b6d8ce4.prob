@@ -1,0 +1,1 @@
+{"name":"Local: H","url":"d:\\Tasks\\C\\sjjg\\week4\\H.2.cpp","tests":[{"id":1697344865668,"input":"(a,b,c)","output":"(c,b,a)"},{"id":1697345931704,"input":"(a,b,c,(h,(e),(f,g,(h))),i)","output":"(i,(((h),g,f),(e),h),c,b,a)"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Tasks\\C\\sjjg\\week4\\H.2.cpp","group":"local","local":true}

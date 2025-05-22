@@ -1,0 +1,1 @@
+{"name":"Local: 1","url":"d:\\Tasks\\C\\sjjg\\week4\\1.p.cpp","tests":[{"id":1697302679338,"input":"3\n4\n4\n1 1 3\n1 4 5\n2 2 -1\n3 1 2\n4\n2\n4\n1 2 2\n2 1 1\n3 1 -2\n3 2 4","output":"3\n2\n3\n1,2,6\n2,1,-1\n3,2,4"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Tasks\\C\\sjjg\\week4\\1.p.cpp","group":"local","local":true}

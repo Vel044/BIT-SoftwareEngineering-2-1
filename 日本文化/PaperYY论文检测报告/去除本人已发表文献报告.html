@@ -1,0 +1,1962 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>去除本人已发表文献报告</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="toTop" content="true">
+    <meta content="0" http-equiv="Expires"/>
+    <meta content="no-cache" http-equiv="Pragma"/>
+    <meta content="no-cache" http-equiv="Cache-Control"/>
+    <meta content="no-cache" http-equiv="Cache"/>
+    <link href="css/index_2018051810.css" type="text/css" rel="stylesheet"/>
+    <script src="js/jquery1.42.min.js" type="text/javascript"></script>
+    <script src="js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
+    <script src="js/esl.js" type="text/javascript"></script>
+        <script src="js/toTop.js" type="text/javascript"></script>
+    <!--解决IE 6不支持png格式的代码-->
+    <!--[if IE 6]>-->
+    <script src="js/png.js" type="text/javascript"></script>
+    <script>
+        var linkUrl = 'https://www.paperyy.com.cn/paper_service_1.aspx';
+        var domainUrl = linkUrl.substring(linkUrl.indexOf("//") + 2, linkUrl.indexOf("/", linkUrl.indexOf("//") + 2));
+        DD_belatedPNG.fix('.pngfix');
+
+        //正则表达式，获取地址中的参数
+        var reg = new RegExp("(^|&)data=([^&]*)(&|$)", "i");
+
+        function getQueryString() {
+            var search = location.search;
+            var param = search.substr(1).match(reg);
+            if (param == null) return;
+            var encode = param[2];
+            var decode = decodeURIComponent(encode);
+            var data = JSON.parse(decode);
+            var urlMap = data.UrlMap;
+            $(".repTabLink_0426 a").each(function () {
+                var key = $(this).attr("href");
+                if(urlMap[key]) {
+                    var url;
+                    if (urlMap[key].indexOf("?") > -1) {
+                        url = urlMap[key] + "&data=" + encode;
+                    } else {
+                        url = urlMap[key] + "?data=" + encode;
+                    }
+                    $(this).attr("href", url);
+                }
+            });
+            $("#navigation").show();
+        }
+        $(document).ready(function () {
+            getQueryString();
+        });
+
+        var reportServiceUrl= "https://aliyun.gateway.laibokeji.com/lb-report-service";
+        var reportServiceKey = "KEJND0CJ";
+        function getBuried(eventId,eventType,page){
+            var buriedData = {
+                appkey: reportServiceKey,
+                eventId:  eventId,
+                eventType: eventType,
+                page:  page,
+                platform: "PC",
+                userId: 0
+            }
+            try{
+                $.ajax({
+                    type: "post",
+                    dataType: "json",
+                    async: true,
+                    contentType : 'application/json',
+                    data:JSON.stringify(buriedData),
+                    url: reportServiceUrl + "/api/selling-points/add?t=" + new Date().getTime(),
+                    error: function(XmlHttpRequest, textStatus, errorThrown) {},
+                    success: function(res) {}
+                });
+            }catch(err){}
+        }
+    </script>
+    <style>
+        /**
+        * 非至尊版报告检测报告结果样式
+        *
+        */
+
+        .ReportResult_Con1_new {
+            width: 100%;
+            height: 40px;
+        }
+
+        .ReportResult_Con1_new ul li{
+            display: inline-block;
+            margin-right: 30px;
+            height: 34px;
+        }
+        .ReportResult_Con1_new .result-word {
+            position: relative;
+        }
+
+        .ReportResult_Con1_new .result-word .text-up {
+            position: absolute;
+            width: 120px;
+        }
+
+        .ReportResult_Con1_new .result-word .text-down {
+            position: absolute;
+            top: 25px;
+            width: 120px;
+            left: 14px;
+        }
+
+        .ReportResult_Con1_new ul li:nth-child(1){
+            font-weight: 800;
+        }
+
+        .ReportResult_Con1_new ul li:nth-child(3){
+            margin-right: 40px;
+        }
+
+        .color-red {
+            color: #ef001c
+        }
+        .TextInfoContent_right .green{
+            color: #6A902E;
+            font-weight: bold;
+        }
+
+        .TextInfoContent_right .gray{
+            color: #C0C0C0;
+        }
+        .wrapper_con{
+            position: relative;
+        }
+        .zjk-tips{
+            width: 210px;
+            background: #fff;
+            position: absolute;
+            right: -240px;
+            top: 207px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .zjk-tips::after{
+            content: '';
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-right-color: #fff;
+            position: absolute;
+            left: -19px;
+            top: 23px;
+        }
+        .cnki_forecast {
+            bottom : 7px
+        }
+        .seal {
+            right: 7px;
+        }
+        .ReportResult_Con1 dl dd.qu4 {
+            background-position: -300px -450px;
+        }
+        .ReportResult_Con1 dl dd.qu2 {
+            width: 224px;
+        }
+        .ReportResult_Con1 dl dd {
+            display: block;
+            float: left;
+            font-size: 14px;
+            background: url(images/li.gif?v20210924) no-repeat;
+            width: 184px;
+            padding-left: 23px;
+            margin-right: 15px;
+            margin-left: 0px;
+            height: 24px;
+            line-height: 24px;
+        }
+        .repTabLink_0426 li {
+            width: 192px;
+            margin-right: 0px;
+        }
+
+        /* 论文检查样式 */
+        .check-com-box {
+            background: #ffffff;
+            box-shadow: 0px 4px 18px 1px rgba(0, 0, 0, 0.1);
+            border-radius: 6px 6px 6px 6px;
+            border: 1px solid #e6e8ea;
+            width: 360px;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item {
+            cursor: pointer;
+            height: 52px;
+            border-bottom: 1px solid #f0f1f2;
+            margin: 0px 26px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .check-com-box .check-com-item-box:first-child .check-com-item-row {
+            display: block;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item .check-item-title {
+            color: #3f4654;
+            font-weight: 700;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item .check-item-right .check-issue-number {
+            width: 39px;
+            display: inline-block;
+            background: #fdeddf;
+            border-radius: 34px 34px 34px 34px;
+            text-align: center;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item .check-item-right .arrows {
+            color: #a5a9b8;
+            margin: 0 8px 0 15px;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item .check-item-right .check-com-item-arrows {
+            margin: 0 8px 0 15px;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row {
+            display: none;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row .check-row-box {
+            padding: 24px 24px 0 18px;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row .check-row-box .structure-list {
+            max-height: 500px;
+            overflow: auto;
+            border-bottom: 1px solid #f5f6f7;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row .check-row-box .structure-list .structure-list-item-box {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row .check-row-box .structure-list .structure-list-item-box .structure-list-item-box-title {
+            width: 39px;
+            color: #3f4654;
+            font-size: 13px;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row .check-row-box .structure-list .structure-list-item-box .structure-list-item-box-title .structure-label {
+            text-align: center;
+            width: 100%;
+            display: inline-block;
+            border-radius: 4px 4px 4px 4px;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row .check-row-box .structure-list .structure-list-item-box .structure-item-label-box {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row .check-row-box .structure-list .structure-list-item-box .structure-item-label-box .structure-item-label {
+            cursor: pointer;
+            width: 77px;
+            height: 28px;
+            background: #FFEAEA;
+            border-radius: 4px 4px 4px 4px;
+            margin-right: 8px;
+            margin-bottom: 10px;
+            text-align: center;
+            line-height: 28px;
+            display: inline-block;
+            color: #FD6F70;
+            border: 1px solid rgba(0, 0, 0, 0);
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row .check-row-box .structure-list .structure-list-item-box .structure-item-label-box .structure-item-label:hover {
+            border-color: #FD6F70;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row .check-row-box .structure-list .structure-list-item-box .structure-item-label-box .suggest-text {
+            margin-bottom: 12px;
+            margin-left: 8px;
+            color: #656b76;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row .check-row-box .structure-list .structure-list-item-box .structure-item-label-box .suggest-text .problem-nuber {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row .check-row-box .structure-list .column {
+            flex-direction: column;
+        }
+
+        .footer-popup-box .check-com-box-close {
+            position: absolute;
+            right: 0;
+            top: -30px;
+            cursor: pointer;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-box-oneOn {
+            background: rgb(247, 248, 249);
+            border-radius: 6px 6px 0px 0px;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-box-oneOn .check-com-item-arrows {
+            transform: rotate(-90deg);
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-box-one {
+            border-radius: 6px 6px 0px 0px;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item .check-item-right .check-issue-numberNo {
+            margin-right: 42px;
+        }
+
+        /* 底部弹窗纠错 */
+        .footer-popup-box {
+            position: fixed;
+            bottom: 10%;
+            right: 10px;
+            z-index: 3;
+        }
+
+        .check-correct-box {
+            background: #FFFFFF;
+            box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.16);
+            border-radius: 6px;
+            margin-bottom: 3px;
+            width: 360px;
+        }
+
+        .check-correct-box-title {
+            height: 44px;
+            background: #F7F8F9;
+            border-radius: 6px 6px 0px 0px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #3F4654;
+            padding-left: 20px;
+            line-height: 44px;
+        }
+
+        .check-correct-box-li {
+            height: 50px;
+            line-height: 50px;
+            border-bottom: 1px solid #F0F1F2;
+            margin: 0 20px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .check-correct-box-li-num {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background: #FFFFFF;
+            border: 1px solid #D8DADD;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 16px;
+            font-size: 12px;
+            color: #9EA2A9;
+        }
+
+        .check-correct-box-li-old {
+            color: #5462CC;
+        }
+
+        .check-correct-box-li-new {
+            display: inline-block;
+            padding: 0px 10px;
+            background: #EAECF9;
+            border-radius: 4px 4px 4px 4px;
+            color: #5462CC;
+            font-size: 13px;
+            height: 26px;
+            line-height: 26px;
+            margin-left: 8px;
+        }
+
+        .check-correct-box-liAll {
+            height: 44px;
+            line-height: 44px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #3F4654;
+            padding: 0 20px 0 45px;
+            cursor: pointer;
+        }
+
+        .check-correct-box-liAll-num {
+            padding: 0 8px;
+            height: 20px;
+            background: #EAECF9;
+            border-radius: 34px 34px 34px 34px;
+            text-align: center;
+            line-height: 19px;
+            font-size: 12px;
+            color: #5462CC;
+            display: inline-block;
+            margin: 0 3px;
+        }
+
+        .check-correct-box-lists {
+            position: relative;
+        }
+
+        .check-correct-box-lists-pup {
+            width: 137px;
+            height: 28px;
+            background: #FFFFFF;
+            box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.12);
+            border-radius: 4px 4px 4px 4px;
+            text-align: center;
+            line-height: 28px;
+            font-size: 12px;
+            color: #3F4654;
+            position: absolute;
+            top: -30px;
+            right: 50px;
+            display: none;
+        }
+
+        .check-correct-box-li:hover .check-correct-box-lists-pup {
+            display: block;
+        }
+
+        .check-correct-box-lists-pup img {
+            margin-right: 3px;
+            margin-top: -3px;
+        }
+
+        .check-correct-box-lists-pup:before {
+            content: '';
+            display: block;
+            border-left: 6px solid transparent;
+            border-top: 9px solid #fff;
+            border-right: 6px solid transparent;
+            position: absolute;
+            bottom: -8px;
+            left: 11px;
+            filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.12));
+        }
+
+        .footer-popup-box-on {
+            bottom: 56%;
+        }
+
+        /* 底部在线改重弹窗 */
+        .check-online-tips-box{
+            width: 154px;
+            background: #FFFFFF;
+            box-shadow: 0px 4px 18px 1px rgb(0 0 0 / 16%);
+            border-radius: 6px 6px 6px 6px;
+            position: fixed;
+            bottom: 7%;
+            left: 12%;
+            z-index: 9999;
+            padding: 20px 20px;
+        }
+        .check-online-tips-box-timg{
+            position: absolute;
+            top: -43px;
+            left: -16px;
+        }
+        .check-online-tips-box-close{
+            width: 13px;
+            height: 13px;
+            cursor: pointer;
+            position: absolute;
+            right: 14px;
+            top: 14px;
+        }
+        .check-online-tips-box-close img{
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        .check-online-tips-xbt{
+            font-size: 15px;
+            color: #3F4654;
+        }
+        .check-online-tips-xbt span{
+            border-bottom: 8px solid #DAE4FD;
+        }
+        .check-online-tips-xbt span em{
+            font-size: 15px;
+            color: #3F4654;
+            font-weight: bold;
+            font-style: initial;
+            position: relative;
+            top: 6px;
+        }
+        .check-online-tips-txt{
+            font-size: 13px;
+            color: #3F4654;
+            line-height: 20px;
+            margin-top: 15px;
+        }
+        .check-online-tips-btn{
+            width: 114px;
+            height: 30px;
+            background: #467AF2;
+            border-radius: 6px 6px 6px 6px;
+            margin: 0 auto;
+            line-height: 30px;
+            font-size: 13px;
+            color: #FFFFFF;
+            text-align: center;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .check-online-tips-btn a{
+            font-size: 13px;
+            color: #FFFFFF;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 在线修改样式 */
+        .check-online-text-btn {
+            color: #467AF2;
+            font-size: 12px;
+            cursor: pointer;
+            float: right;
+            margin-right: 5px;
+            display: none;
+        }
+
+        .check-online-text-btn a {
+            color: #467AF2;
+            font-size: 12px;
+            display: block;
+        }
+
+        .check-online-text-btn span {
+            font-weight: normal;
+            text-decoration: underline;
+        }
+
+        .Origin_text:hover .check-online-text-btn {
+            display: inline;
+        }
+
+        @media screen and (max-width: 1880px) {
+            .check-online-tips-box{
+                left: 10%;
+            }
+        }
+        @media screen and (max-width: 1790px) {
+            .check-online-tips-box{
+                left: 8%;
+            }
+        }
+        @media screen and (max-width: 1700px) {
+            .check-online-tips-box{
+                left: 6%;
+            }
+        }
+        @media screen and (max-width: 1620px) {
+            .check-online-tips-box{
+                left: 4%;
+            }
+        }
+        @media screen and (max-width: 1560px) {
+            .check-online-tips-box{
+                left: 2%;
+            }
+        }
+        @media screen and (max-width: 1490px) {
+            .check-online-tips-box{
+                left: 1.5%;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- 底部在线改重弹窗 -->
+    <div class="check-online-tips-box">
+        <img src="images/check_online_tips_icon1.png" class="check-online-tips-box-timg"/>
+        <div class="check-online-tips-box-close" onClick="checkOnlineTipClose()">
+            <img src="images/close.png" />
+        </div>
+        <div class="check-online-tips-xbt">
+                        <span>
+                            <em>智能写作</em>
+                        </span>
+        </div>
+        <div class="check-online-tips-txt">
+            逐句查看相似源<br>
+            对照改重
+        </div>
+        <div class="check-online-tips-txt">
+            智能续写改写<br>
+            轻松消除飘红文字
+        </div>
+        <div class="check-online-tips-btn">
+            立即体验
+        </div>
+    </div>
+    <script>
+        $(function() {
+            $(".check-online-tips-btn").click(function(){
+                var newWindow = window.open();
+                newWindow.location.href= "https://" + domainUrl + '/online_check/prepare_check/9-94733aa9-d39e-4c13-a68b-deda07bfac48'
+            })
+        })
+        function checkOnlineTipClose(){
+            $(".check-online-tips-box").hide()
+        }
+    </script>
+<!-- 底部在线改重弹窗 end-->
+
+<!--底部弹框-->
+    <div class="footer-popup-box">
+            <div class="check-com-box-close" onClick="checkBoxClose()">
+                <img src="images/check_close.png"/>
+            </div>
+            <div class="check-correct-box">
+                <div class="check-correct-box-title">
+                    错别字建议
+                </div>
+                <div class="check-correct-box-lists">
+                        <div class="check-correct-box-li">
+                            <div class="check-correct-box-lists-pup">
+                                <img src="images/check_correct_icon1.png"/>
+                                点击打开纠错
+                            </div>
+                            <span class="check-correct-box-li-num">
+						1
+					</span>
+                            “<span class="check-correct-box-li-old">武</span>”
+                            建议
+                                加词为
+                                <span class="check-correct-box-li-new">了武</span>
+                        </div>
+                        <div class="check-correct-box-li">
+                            <div class="check-correct-box-lists-pup">
+                                <img src="images/check_correct_icon1.png"/>
+                                点击打开纠错
+                            </div>
+                            <span class="check-correct-box-li-num">
+						2
+					</span>
+                            “<span class="check-correct-box-li-old">的</span>”
+                            建议
+                                删除
+                        </div>
+                    <div class="check-correct-box-liAll">
+                        <div>
+                            查看全部错别字
+                        </div>
+                        <img src="images/check_icon_arrows.png" class="check-com-item-arrows"/>
+                    </div>
+                </div>
+            </div>
+            <script>
+                $(function () {
+                    $('.check-correct-box-liAll,.check-correct-box-li').click(function () {
+                        var newWindow = window.open();
+                        newWindow.location.href = "https://" + domainUrl + '/yy-pro/page/netdisc/writing-loading?taskId=9-94733aa9-d39e-4c13-a68b-deda07bfac48&correctCheck=true'
+                    })
+                })
+            </script>
+            <div class="check-com-box">
+
+                <div>
+                    <div class="check-com-item-box">
+                        <div class="check-com-item-box-one check-com-item-box-oneOn"
+                             data-num="7">
+                            <div class="check-com-item">
+                                <div class="check-item-title">结构建议</div>
+                                <div class="check-item-right"><span
+                                            class="check-issue-number "
+                                            style="background: rgb(255, 234, 234);"><span
+                                                style="color: rgb(253, 111, 112);">
+                                            7
+									</span></span>
+                                        <img src="images/check_icon_arrows.png"
+                                             class="check-com-item-arrows"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="check-com-item-row"  >
+                            <div class="check-row-box">
+                                <div class="structure-list">
+                                        <div class="structure-list-item-box">
+                                            <div class="structure-list-item-box-title">缺失：</div>
+                                            <div class="structure-item-label-box">
+                                                    <span class="structure-item-label">页眉</span>
+                                                    <span class="structure-item-label">授权书</span>
+                                                    <span class="structure-item-label">中文摘要</span>
+                                                    <span class="structure-item-label">英文摘要</span>
+                                                    <span class="structure-item-label">致谢</span>
+                                                    <span class="structure-item-label">英文关键词</span>
+                                            </div>
+                                        </div>
+                                        <div class="structure-list-item-box">
+                                            <div class="structure-list-item-box-title">过少：</div>
+                                            <div class="structure-item-label-box">
+                                                    <span class="structure-item-label">参考文献</span>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="check-com-item-box">
+                        <div class="check-com-item-box-one" data-num="1">
+                            <div class="check-com-item">
+                                <div class="check-item-title">格式建议</div>
+                                <div class="check-item-right"><span
+                                            class="check-issue-number "
+                                            style="background: rgb(253, 237, 223);"><span
+                                                style="color: rgb(252, 141, 15);">
+                                            1
+									</span></span>
+                                        <img src="images/check_icon_arrows.png"
+                                             class="check-com-item-arrows"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="check-com-item-row">
+                            <div class="check-row-box">
+                                <div class="structure-list">
+                                        <div class="structure-list-item-box">
+                                            <div class="structure-list-item-box-title" style="width: 62px;"><span
+                                                        class="structure-label"
+                                                        style="background: rgb(253, 237, 223); color: rgb(252, 141, 15);">
+												封面
+											</span>
+                                            </div>
+                                            <div class="structure-item-label-box column ">
+                                                    <p class="suggest-text">有
+                                                        <span class="problem-nuber"
+                                                              style="color: rgb(252, 141, 15);">
+														1
+												</span> 处封面：不建议设置页眉页脚
+                                                    </p>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="check-com-item-box">
+                        <div class="check-com-item-box-one" data-num="2">
+                            <div class="check-com-item">
+                                <div class="check-item-title">标点建议</div>
+                                <div class="check-item-right"><span
+                                            class="check-issue-number "
+                                            style="background: rgb(232, 239, 253);"><span
+                                                style="color: rgb(73, 125, 239);">
+                                            2
+									</span></span>
+                                        <img src="images/check_icon_arrows.png"
+                                             class="check-com-item-arrows"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="check-com-item-row">
+                            <div class="check-row-box">
+                                <div class="structure-list">
+                                        <div class="structure-list-item-box">
+                                            <div class="structure-list-item-box-title" style="width: 62px;"><span
+                                                        class="structure-label"
+                                                        style="background: rgb(232, 239, 253); color: rgb(73, 125, 239);">
+												全文
+											</span>
+                                            </div>
+                                            <div class="structure-item-label-box column ">
+                                                    <p class="suggest-text">有
+                                                        <span class="problem-nuber"
+                                                              style="color: rgb(73, 125, 239);">
+														1
+												</span> 处中文标点建议换成"全角"
+                                                    </p>
+                                            </div>
+                                        </div>
+                                        <div class="structure-list-item-box">
+                                            <div class="structure-list-item-box-title" style="width: 62px;"><span
+                                                        class="structure-label"
+                                                        style="background: rgb(232, 239, 253); color: rgb(73, 125, 239);">
+												参考文献
+											</span>
+                                            </div>
+                                            <div class="structure-item-label-box column ">
+                                                    <p class="suggest-text">有
+                                                        <span class="problem-nuber"
+                                                              style="color: rgb(73, 125, 239);">
+														1
+												</span> 处参考文献末尾建议修改标点为"."
+                                                    </p>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="check-com-item-box">
+                        <div class="check-com-item-box-one" data-num="2">
+                            <div class="check-com-item">
+                                <div class="check-item-title">质量建议</div>
+                                <div class="check-item-right"><span
+                                            class="check-issue-number "
+                                            style="background: rgb(212, 245, 230);"><span
+                                                style="color: rgb(31, 154, 96);">
+                                            2
+									</span></span>
+                                        <img src="images/check_icon_arrows.png"
+                                             class="check-com-item-arrows"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="check-com-item-row">
+                            <div class="check-row-box">
+                                    <div class="structure-list">
+                                        <div class="structure-list-item-box">
+                                            <div class="structure-list-item-box-title" style="width: 62px;"><span
+                                                        class="structure-label"
+                                                        style="background: rgb(212, 245, 230); color: rgb(31, 154, 96);">
+													参考文献
+											</span>
+                                            </div>
+                                            <div class="structure-item-label-box column ">
+                                                    <p class="suggest-text">有
+                                                        <span class="problem-nuber"
+                                                              style="color: rgb(31, 154, 96);">
+														1
+												</span> 处建议参考文献包含英文文献
+                                                    </p>
+                                                    <p class="suggest-text">有
+                                                        <span class="problem-nuber"
+                                                              style="color: rgb(31, 154, 96);">
+														1
+												</span> 处建议参考文献包含近三年文献
+                                                    </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                $(function () {
+                    $('.check-com-item-box-one').click(function () {
+                        if ($(this).attr("data-num") != "0") {
+                            $(this).toggleClass("check-com-item-box-oneOn")
+                                .parent().siblings().find(".check-com-item-box-one").removeClass("check-com-item-box-oneOn");
+                            $(this).siblings(".check-com-item-row").slideToggle()
+                                .parent().siblings().find(".check-com-item-row").slideUp();
+                        }
+                    })
+                    $(".structure-item-label,.problem-nuber").click(function () {
+                        var newWindow = window.open();
+                        newWindow.location.href = "https://" + domainUrl + '/yy-pro/page/netdisc/writing-loading?taskId=9-94733aa9-d39e-4c13-a68b-deda07bfac48&reportCheck=true'
+                    })
+                })
+            </script>
+        <script>
+            function checkBoxClose() {
+                $(".footer-popup-box").hide();
+            }
+        </script>
+    </div>
+
+<!--topbg-->
+<a name="top"></a>
+<div class="topbg">
+    <div class="top">
+	<div style="top: 30px;position: absolute;left: 50px;z-index: 66;">
+            <a class="left_top_btn" href="https://www.paperyy.com/member_new/thesis/post.aspx" target="_blank">
+                <img src="images/go_free_check.png">
+            </a>
+        </div>
+	<div style="top: 30px;position: absolute;left: 180px;z-index: 66;">
+            <a class="left_top_btn" href="https://www.paperyy.com/online_check/prepare_check/9-94733aa9-d39e-4c13-a68b-deda07bfac48" target="_blank">
+                <img src="images/go_check_online.png">
+            </a>
+        </div>
+        <div class="logo pngfix">
+                <img src="images/logo_-1.png">（去除本人已发表文献报告）
+        </div>
+    </div>
+</div>
+<!--topbg end-->
+<!--wrapper-->
+<div class="wrapper">
+    <!--wrapper_topbg-->
+    <div class="wrapper_topbg">
+        <!--xp 20150305 begin-->
+        <div class="type1" style="font-size: 13px;height: 14px;line-height: 41px;"></div>
+        <!--xp 20150305 end-->
+        <!--wrapper_con-->
+        <div class="wrapper_con">
+                <div class="zjk-tips"  style="display: none;"></div>
+            <div class="wrapper_conT"></div>
+            <div class="wrapper_con_content">
+                <!--TextInfo-->
+                <div class="TextInfo Mar">
+                    <div class="navbar">
+                        <ul class="fastBar">
+                        </ul>
+                    </div>
+                    <!--TextInfoCon-->
+                    <div class="TextInfoCon">
+                        <div class="TextTitle" style="width:129px;">文献基本信息</div>
+                        <!--TextInfoContent-->
+                        <div class="TextInfoContent">
+                            <div class="TextInfoContent_left">
+                                <ul>
+                                    <li><span class="lbt">检测文献：</span>东亚风云：浅析东亚大环境对日本的影响——读《发现东亚》有感</li>
+                                    <li><span class="lbt">文献作者：</span></li>
+                                    <li><span class="lbt">报告时间：</span>2023-11-21 00:32:12</li>
+                                    <li><span class="lbt">段落个数：</span>1</li>
+                                    <li><span class="lbt">报告编号：</span>YY202311210032081333</li>
+                                </ul>
+                            </div>
+                            <div class="division_line"></div>
+                            <div class="TextInfoContent_right">
+                                <ul>
+                                    <li class="title">检测范围：</li>
+                                        <li>中国期刊库</li>
+                                        <li>中国图书库</li>
+                                        <li>硕士论文库</li>
+                                        <li>博士论文库</li>
+                                        <li>会议论文库</li>
+                                        <li>报纸库</li>
+                                        <li>中国专利库</li>
+                                        <li>中国标准库</li>
+                                        <li>百科库</li>
+                                        <li>网页库</li>
+                                        <li>中国共享库</li>
+                                        <li>工作总结</li>
+                                        <li>思想汇报</li>
+                                        <li>项目申报书</li>
+                                            <li class="gray">个人自建库</li>
+                                            <li class="gray">共享自建库</li>
+                                            <li class="gray">机构自建库</li>
+                                </ul>
+                            </div>
+                            <div class="seal">
+                                <div id="SealArea">
+                                    <div id="SealBg">
+                                        <img width="125" height="125" src="data:image/png;base64,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"/>
+                                    </div>
+                                    <div id="SealPercent"></div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <!--TextInfoContent end-->
+                    </div>
+                    <!--TextInfoCon end-->
+                </div>
+                <!--TextInfo end-->
+
+                    <div class="Recommend">
+                        <div class="TextTitle" style="width:112px;">推荐服务</div>
+                        <div class="ReportResult_T"></div>
+                        <div class="ReportResult_Con recommend_list">
+                                <a class="recommend_row recom-row" href="https://www.paperyy.com/check-pay/reduce-pay-task/YY202311210032081333" target="_blank">
+                                    <div class="recommend_left">
+                                        <img class="img1" src="images/recommend_icon1.png"/>
+                                    </div>
+                                    <p class="recommend_right">自动降重</p>
+                                </a>
+                                <a class="recommend_row recom-row" href="http://www.paperyy.com/online_check/prepare_check/9-94733aa9-d39e-4c13-a68b-deda07bfac48" target="_blank">
+                                    <div class="recommend_left">
+                                        <img class="img2" src="images/recommend_icon2.png"/>
+                                    </div>
+                                    <p class="recommend_right">在线修改</p>
+                                </a>
+                                <a class="recommend_row recom-row" href="https://www.paperyy.com/paper-correction/check?taskId=9-94733aa9-d39e-4c13-a68b-deda07bfac48" target="_blank">
+                                    <div class="recommend_left">
+                                        <img class="img4" src="images/recommend_icon4.png"/>
+                                    </div>
+                                    <p class="recommend_right">论文纠错</p>
+                                </a>
+                            <a class="recommend_row" href="https://www.ixueshu.com/" target="_blank">
+                                <div class="recommend_left">
+                                    <img class="img5" src="images/recommend_icon5.png"/>
+                                </div>
+                                <p class="recommend_right">找论文</p>
+                            </a>
+                            <a class="recommend_row" href="../../resource/降重秘籍.pdf" target="_blank">
+                                <div class="recommend_left">
+                                    <img class="img5" src="images/recommend_icon1.png">
+                                </div>
+                                <p class="recommend_right">降重秘籍</p>
+                            </a>
+                            <a class="recommend_row" href="https://www.paperyy.com/member_new/thesis/post.aspx" target="_blank">
+                                <div class="recommend_left">
+                                    <img class="img3" src="images/recommend_icon3.png"/>
+                                </div>
+                                <p class="recommend_right">免费查重</p>
+                            </a>
+                        </div>
+                        <div class="ReportResult_Bot"></div>
+                    </div>
+                    <div>
+                        <!--<div class="banner_0508"><a href="https://www.paperyy.com/reduce_repetition.aspx?reportnum=YY202311210032081333" target="_blank"></a></div>-->
+                            <div class="recommend-img-box" style="display: none;">
+
+                                <div class="tempWrap bd" style="overflow:hidden; position:relative; height:120px">
+                                    <ul class="recommend-img-boximg">
+
+                                    </ul>
+                                </div>
+                            </div>
+                    </div>
+                <!--ReportResult-->
+                <!-- 至尊版还是以前展示的内容，其它版本做调整 -->
+                    <div class="ReportResult Mar">
+                        <div class="TextTitle" style="width:129px;">检测报告结果</div>
+                        <div class="ReportResult_T"></div>
+                        <div class="ReportResult_Con">
+                            <!--ReportResult_Con1-->
+                            <div class="ReportResult_Con1_new">
+                                <ul>
+                                    <li>
+                                        <span class="color-red">总文字复制比：22.7%</span>
+                                    </li>
+                                    <li>
+                                        <span>去除引用文献复制比：</span><span class="color-red">22.7%</span>
+                                    </li>
+                                    <li>
+                                        <span>去除本人已发表文献复制比：</span><span class="color-red"> 22.7%</span>
+                                    </li>
+                                    <li>
+                                        <span>自建库复制比：</span><span class="color-red"> 0%</span>
+                                    </li>
+                                    <li class="result-word">
+                                        <p class="text-up">重复字数：1,131</p>
+                                        <p class="text-down">总字数：4,977</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--ReportResult_Con1 end-->
+                        </div>
+                        <div class="ReportResult_Bot"></div>
+                    </div>
+                <!--ReportResult end-->
+                <!--DetailReport-->
+                <div class="DetailReport Mar">
+                    <!--tab begin-->
+                    <div class="notice">
+                        <div class="repTabLink_0426">
+                                <ul>
+                                            <li><a href="全文标明引文报告.html" target="_blank">全文标明引文报告</a></li>
+                                            <li class="curr">去除本人已发表文献报告</li>
+                                            <li><a href="简洁报告.html" target="_blank">简洁报告</a></li>
+                                            <li><a href="全文对照报告.html" target="_blank">全文对照报告</a></li>
+                                </ul>
+                        </div>
+                        <div class="tab-bd">
+                            <div class="repTip_04261800">检测原文内容中<span class="red">红色字体</span>标记的为重复文字</div>
+                            <div class="tab-pal">
+                                <ul>
+                                    <!--xp 20150306 begin-->
+                                    <!--summary-->
+                                    <div class="summary">
+                                            <!--summary-->
+                                            <dl>
+                                                <dt>
+                                                    <span class="sumInfo">1.东亚风云：浅析东亚大环境对日本的影响——读《发现东亚》有感_第1部分</span>
+                                                    <span class="sumTotal">总字数：4,977</span>
+                                                </dt>
+                                                <dd>
+                                                    文字复制比：22.7%（1,131）
+                                                </dd>
+                                            </dl>
+                                                <div class="simply_table">
+                                                    <table bordercolor="#fff" cellspacing="0" cellpadding="0"
+                                                           class="simp_table">
+                                                            <!--内容1-->
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">1</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://baike.baidu.com/item/%E6%B1%9F%E6%88%B7%E6%97%B6%E4%BB%A3/1541297#10_1"
+                                                                               target="_blank">江户时代（日本最后一个封建武家时代）_百度百科</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                             -
+                                                                            《网页
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">10.6%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <!--内容1-->
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">2</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://baike.baidu.com/subview/85353/85353.htm?bkfr=detailtbl"
+                                                                               target="_blank">江户时代</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                            silentino -
+                                                                            《百科
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">10.1%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <!--内容1-->
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">3</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://xueshu.baidu.com/s?wd=冷战时期美日关系嬗变的主要轨迹"
+                                                                               target="_blank">冷战时期美日关系嬗变的主要轨迹</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                            赵学功 -
+                                                                            《人民论坛·学术前沿
+                                                                            》- 2018
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">4.3%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <!--内容1-->
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">4</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://m.toutiao.com/i6797721748667105803/"
+                                                                               target="_blank">鬼灭之刃：艺术创作皆来源于生活，呼吸之法如何用生活常识来解释</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                            咕噜咕噜波波酱 -
+                                                                            《网页
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">3.2%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <!--内容1-->
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">5</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://xueshu.baidu.com/s?wd=美日关系嬗变的主要轨迹"
+                                                                               target="_blank">美日关系嬗变的主要轨迹</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                            赵学功 -
+                                                                            《现代国企研究
+                                                                            》- 2019
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">3.1%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <!--内容1-->
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">6</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://m.toutiao.com/i6830055690413801995/"
+                                                                               target="_blank">“丰臣政权”下的水军与文禄·庆长之役（万历朝鲜战争）概述</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                            南書房 -
+                                                                            《网页
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">2.8%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <!--内容1-->
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">7</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://baike.baidu.com/item/%E6%B1%9F%E6%88%B7%E6%97%B6%E4%BB%A3/1541297#ref_%5B51%5D_85353"
+                                                                               target="_blank">江户时代（日本最后一个封建武家时代）_百度百科</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                             -
+                                                                            《网页
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">2.3%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <!--内容1-->
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">8</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://www.bigengculture.com/shekelunwen/waijiao/2022898.html"
+                                                                               target="_blank">冷战后美日同盟与美韩同盟的差异性比较研究_外交论文_笔耕文化传播</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                             -
+                                                                            《网页
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">2.1%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <!--内容1-->
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">9</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://baike.baidu.com/item/%E6%B1%9F%E6%88%B7%E6%97%B6%E6%9C%9F/12599829#ref_%5B59%5D_85353"
+                                                                               target="_blank">江户时代（日本最后一个封建武家时代）_百度百科</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                             -
+                                                                            《网页
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">2%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <!--内容1-->
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">10</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://www.thepaper.cn/www/resource/jsp/newsDetail_forward_1302643"
+                                                                               target="_blank">大正时代的日本：最有文化，最容易让人联想到当下中国_翻书党_澎湃新闻-ThePaper</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                             -
+                                                                            《网页
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">1.9%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <!--内容1-->
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">11</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://www.thepaper.cn/www/resource/jsp/newsDetail_forward_1302643"
+                                                                               target="_blank">大正时代的日本：最有文化，最容易让人联想到当下中国</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                            马睿澎湃新闻报 -
+                                                                            《网页
+                                                                            》- 2015
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">1.9%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <!--内容1-->
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">12</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://baike.baidu.com/item/%E6%B1%9F%E6%88%B7%E6%97%B6%E6%9C%9F/12599829#ref_%5B24%5D_85353"
+                                                                               target="_blank">江户时代（日本最后一个封建武家时代）_百度百科</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                             -
+                                                                            《网页
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">1.6%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <!--内容1-->
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">13</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="https://www.docin.com/p%2D2181629922.html"
+                                                                               target="_blank">【寿司中的营销道理】 元气寿司 营销</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                             -
+                                                                            《网页
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">1.5%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <!--内容1-->
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">14</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://c.360webcache.com/c?m=03f2d54b10cdfc205c070c57a7579917&q=%E5%A4%A7%E6%AD%A3%E6%97%B6%E6%9C%9F&u=https%3A%2F%2Fzhuanlan.zhihu.com%2Fp%2F28191934"
+                                                                               target="_blank">大正时代:近代日本的乌托邦时代 - 知乎</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                             -
+                                                                            《网页
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">1.3%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <!--内容1-->
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">15</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://baike.baidu.com/item/%E6%98%8E%E6%B2%BB%E7%BB%B4%E6%96%B0#8"
+                                                                               target="_blank">明治维新（19世纪60-90年代日本的改革运动）_百度百科</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                             -
+                                                                            《网页
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">1%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <!--内容1-->
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">16</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://baike.baidu.com/item/%E4%B8%B0%E8%87%A3%E7%A7%80%E5%90%89#ref_%5B4%5D_18835368"
+                                                                               target="_blank">丰臣秀吉（日本战国时代政治家）_百度百科</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                             -
+                                                                            《网页
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">0.9%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <!--内容1-->
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">17</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="https://www.wenxiu365.com/fanwen/714482.html"
+                                                                               target="_blank">甲午中日战争对中国的影响简短</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                             -
+                                                                            《网页
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">0.9%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <!--内容1-->
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">18</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://wen.org.cn/modules/article/view.article.php/4181/c0"
+                                                                               target="_blank">人文与社会 - 文章 - 朱双一：&quot;日本统治带给台湾现代化&quot;流行论调辨析</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                             -
+                                                                            《网页
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">0.8%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <!--内容1-->
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">19</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="https://wenku.baidu.com/view/f3084207773231126edb6f1aff00bed5b9f37384"
+                                                                               target="_blank">日本史期末复习题</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                             -
+                                                                            《网页
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">0.7%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <!--内容1-->
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">20</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://m.toutiao.com/i6898590782102700557"
+                                                                               target="_blank">万历援朝前，朝鲜军队被打成啥样子？民兵打懵日军，王城却被打掉</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                            WarOH协虎 -
+                                                                            《网页
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">0.6%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <!--内容1-->
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">21</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="https://www.haowenxue.net/tags/%E6%98%8E%E6%9C%9D/list_2.html"
+                                                                               target="_blank">明朝_第2页_好文学网</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                             -
+                                                                            《网页
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">0.6%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                        <!--内容1 end-->
+                                                    </table>
+                                                </div>
+                                            <!--detail_table end-->
+                                            <div class="yuanwen_title">原文内容</div>
+                                            <div class="yuanwen">
+                                                <p class='uncheck'>日本历史与文化</p><img name='image_0' style='width:211px;height:57px;' src='data:image/JPEG;base64,/9j/4AAQSkZJRgABAQEA3ADcAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAGyAoUDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooozQAUUmaNwoAWikyKMigBaKM0UAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFB6VDNOkEZeRlVR1JNF7ASk1BPdwW67ppFQe5rktQ8ZC4v8A+zNJ2y3bA4Bbb0Hr2rzTxRqevR3Ygv7kRuy5aKOTJX2JFcdXFxhqlc7KGClUlaTses6h450ewyrTqWHuB/8AX/SueuPirYh9sEMkh6AKuSfzIrynTkW41W1inBkSSVVYbsE5PrXs1no9hY3N/HY2MKTWoVwFTll2AqNx9w1YwxFWrdp2SOqrh6NCykrtmCfi0gJAtJePVV/xqxb/ABZtWI82CVfcoP6GvK74T/b5/tMZjl3kshGCprV8PeH7zVbmCdLVJrVZgsm6QLnpketc6xNdy5U7nVLB4dQ5mj1qx+I2j3ZAaQKT74P5HFdLa6vZXgBhnU56AnFeMeO9M0zSpo7Ww0uSD5sm5LHa/HQVzFnq17p7g29w6gc7d3H5Vv8AXJQlyz1Ob+z4VIc8ND6bBGaWvI/DnxLliCx6ijFCcCTqM/XtXp2n6rbalbiW3lVgRnFdlLEQqbM8+th6lL4kXqKQHilrcwCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiioLieO3ieWRsKvJpN21Ajv7+DT7VppnCqOnvXjPi7x3canM9vZSMkI4Lg4/L/GrXiTWr3xVrX9la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UUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf/Z'><p class='uncheck'>课程论文</p><p class='uncheck'>题 目：东亚风云：浅析东亚大环境</p><p class='uncheck'>对日本的影响——读《发现东亚》有感</p><p class='uncheck'>书 院：计 算 机 学 院 </p><p class='uncheck'>专业名称：软 件 工 程 </p><p class='uncheck'>姓 名：俞 乐 楠</p><p class='uncheck'>学 号： 1120221303 </p><p>东亚风云:浅析东亚大环境</p><p>对日本的影响——读《发现东亚》有感</p><p>计算机学院08012204俞乐楠1120221303</p><p>[摘要]:在阅读的《发现东亚》后,我深受启发,决定撰写一篇以&quot;东亚大环境对日本的影响&quot;为主题的读后感。这篇文章旨在探讨从丰臣秀吉时代到现代,东亚大环境如何影响日本的历史发展。文章首先定义了&quot;东亚大环境&quot;的概念,并强调了其对理解日本历史发展的重要性。接着,文章按照不同的历史时期,详细分析了东亚大环境对日本的影响。这些时期包括丰臣秀吉时代、江户时代、明治维新、大正民主与昭和战争以及后战争时期。每个时期都详细讨论了当时的东亚大环境对日本社会、文化和政治的影响。通过这篇文章,我希望能够提供一个全新的视角来理解和探索日本的历史和文化。</p><p>关键词:东亚大环境;日本历史;日本帝国主义;历史与现实影响</p><p>一、丰臣秀吉时代(16世纪末-17世纪初)</p><p>(一)丰臣秀吉统一日本的背景</p><p><em class='similar'>丰臣秀吉是日本战国时代到安土桃山时代的武将和战国大名</em>。他在16世纪末实现了全国统一。1582年6月,本能寺之变后,主君信长殒命,在同月,秀吉在山崎合战中击败叛臣明智光秀,这标志着秀吉制霸天下的开始。而1590年7月,小田原城的陷落,则宣告秀吉完成了日本再统一。</p><p>秀吉统一了度量衡,并向全国派遣官员推行检地制度,以&quot;石高&quot;(米的产量)计算出土地的生产力,确保税收的稳定征收。此外,为了脱离战国时代的乱世并建构稳定的社会,还积极推进社会结构改革,采取的措施包括没收农民手中的武器,使其专心从事农耕,以防发生武装暴动;明确划分武士和农民的身份。</p><p>在丰臣秀吉时代,日本与中国、朝鲜半岛等东亚地区的交流也十分频繁。这一时期对日本历史发展产生了深远影响。希望这个简介能帮助你理解丰臣秀吉统一日本的背景。</p><p>(二)与明朝中国、朝鲜半岛的关系</p><p>丰臣秀吉在确立了自己在日本的统治权后,也继承了对外扩张的<em class='similar'>野心。他希望能够打破明朝在对外贸易上的封闭政策。</em>他曾<em class='similar'>在1587年调遣大军击败岛津家后,将包括加藤清正和小西行长在内的一批亲信将领分封到九州,为出兵海外进行准备。</em></p><p>与明朝中国的关系方面<em class='similar'>,丰臣秀吉在日本国内的统一后,他的</em>目光开始转向海外,特别是对明朝中国的野心。他曾经写信给西班牙驻菲律宾和印度的总督,表示他将提前到明朝,并要求他们服从。这封信显示了丰臣秀吉对于明朝中国的野心,以及他对于自己在东亚地区的地位的自信。丰臣秀吉的野心并不仅仅停留在口头上。在攻占朝鲜首都汉城后,他甚至开始<em class='similar'>研议要迁都北京。他计划将北京周围10&quot;国&quot;之地献为御用,赐公卿以俸禄,赐其部下以10倍于原有的领地</em>。这些计划显示了丰臣秀吉对于明朝中国的野心,以及他对于自己能够实现这些野心的自信。然而,这些计划并未能实现。丰臣秀吉在1598年去世,他的死标志着日本战国时代的结束。尽管如此,丰臣秀吉时代与明朝中国的关系仍然对日本历史产生了深远影响。希望这个扩充能帮助你理解丰臣秀吉与明朝中国的关系。</p><p>与朝鲜半岛的关系方面,丰臣秀吉入侵朝鲜的将领详细介绍。他在入侵朝鲜前曾写信给西班牙驻菲律宾和印度的总督,说:&quot;我将提前到明朝。相反,你们应该服从于他们&quot;。当时,朝鲜半岛与日本的关系十分密切。日本、中国和朝鲜之间的贸易很频繁,九州和中国地区的大商人、有势力的人和封建领主从这种贸易中获得了巨大的财富。这个因素也使丰臣秀吉很早就考虑向朝鲜半岛扩张。</p><p>二、江户时代(17世纪-19世纪)</p><p>(一)与中国、朝鲜半岛和欧洲列强的交流</p><p><em class='similar'>江户时代(1603年-1868年),又称德川时代,是日本历史中在江户幕府(德川幕府)统治下的时期</em>。这一时期,日本与中国、朝鲜半岛和欧洲列强的交流十分频繁。</p><p>在江户时代,中国和日本之间的贸易并未完全中断。清朝和日本江户时代的交流主要分为三个时期:17到18世纪前期、18世纪中期期到19世纪后半期、20世纪初期清朝和江户幕府的交流3。在江户时代前期,统治日本的德川幕府实行&quot;锁国&quot;政策,严令禁止本国人出国。但是德川幕府只允许在长崎与荷兰、中国通商。因此在很长一段时间,中国和荷兰的船只都在长崎地区从事贸易经商活动。</p><p>清朝实行了闭关政策,为了对抗郑氏力量,严格限制商船出海贸易,但是随着清朝逐渐统一天下,开始实行了&quot;展海令&quot;,因此对海外贸易的限制逐渐放宽。从清朝方面来看,虽然清王朝严厉禁止中国商人去海外贸易,但是什么原因驱使这么多的中国商人甘愿冒着遭遇海难的巨大危险去日本从事贸易的呢?这是因为从江户初期开始,清朝对东洋(即日本)所生产的洋镜、铜的需求量极大,中国国内作为流通的康熙通宝等铜钱原料的重要供给国是日本,因此很多中国商人来长崎贸易。</p><p>在江户时代,尽管日本实行了&quot;锁国政策&quot;,但是与中国之间的交流并未完全中断。这种交流对于两国的文化和经济发展都产生了深远影响。江户时代,日本儒学开始成为了国家教育的主导,汉语成为了日本知识界的通用语言。此外,由于日本向中国借鉴了很多文化和技术,汉语也成为了日本商业和外交交流的必备语言。</p><p>江户时代是日本封建统治的最后一个时代。<em class='similar'>在江户幕府时期,征夷大将军是实际上政权的控制者、国家的最高领导人,号称日本国大君,日本天皇不过是被幕府架空甚至被监控的象征性元首。</em>这一时期最大的特点是制度的持续与稳定和文化的多元与创新。</p><p>(二)江户时代封闭政策下的日本社会和文化发展</p><p>江户时代,日本<em class='similar'>实行了&quot;锁国政策&quot;,严禁与外国贸易,禁止日本与海外交往,只许同中国、朝鲜、荷兰等国通商,而且只准在长崎一地进行。</em></p><p>尽管如此,这个时期的日本社会和文化发展却十分活跃。<em class='similar'>全体居民被严格地分为四个阶层:武士、农民、手工业者和商人。商品经济得到了极大发展,形成了以大阪、江户、京都为中心的商品经济圈</em>1<em class='similar'>。商品经济的发展把农民卷入了商品生产的环流。</em></p><p>在文化方面,<em class='similar'>朱熹的理论侧重于伦理道德的&quot;大义名分&quot;思想,符合江户幕府的政治需要。幕府将朱子学定为官方意识形态,推广到民间。</em>阳明学<em class='similar'>的鼓励实践的精神,鼓舞了一批日本社会的革命家</em>,影响了明治维新运动的重要领导人。古学派主张<em class='similar'>恢复真正的儒学,追踪孔孟经典,钻研先秦儒学</em>,批判朱子学和阳明学对儒学的曲解。</p><p>此外,&quot;浮世绘&quot;也是江户时代文化的一个重要特色。<em class='similar'>浮世绘就是描写歌舞伎、相扑、花街柳巷等今世浮华景象的绘画</em>,风格华丽、取材生动,如织锦般华美丰富。</p><p>总体来说,在封闭政策下的江户时代,日本社会和文化发展仍然十分活跃,并对日本历史产生了深远影响。<em class='similar'>控制者、国家的最高领导人,号称日本国大君,日本天皇不过是被幕府架空甚至被监控的象征性元首。</em>这一时期最大的特点是制度的持续与稳定和文化的多元</p><p>三、明治维新(19世纪末-20世纪初)</p><p>(一)学习西方科技,与中国和朝鲜半岛的冲突</p><p>明治维新是日本历史上的一个重要时期,标志着日本从封闭的封建社会转变为开放的现代化国家。在这个过程中,日本大力引进和学习西方的科学技术和文化,以推动国家的现代化进程。</p><p><em class='similar'>明治维新后的日本开始走上资本主义道路,对外积极侵略扩张,确定了以中国为中心的&quot;大陆政策&quot;</em>。日本还在明治维新之后制定了基本国策,大体意思是:以朝鲜半岛为跳板为支轴,先占领中国,再侵占整个亚洲,最后占领全世界。</p><p>这些行动不仅改变了日本自身,也对周边国家产生了深远影响。尽管这些行动带来了一些负面影响,如冲突和战争,但它们也推动了日本成为一个科技强国,并在全球科技领域中扮演着重要的角色。今天的日本已经成为世界上最先进的科技国家之一。</p><p>(二)明治维新对日本社会和文化的影响</p><p>明治维新对日本社会和文化产生了深远影响。首先,明治维新<em class='similar'>结束了长达六百多年的武士封建制度,以藩阀和资本家取代武士阶级的统治。商品经济得到了极大发展,形成了以大阪、江户、京都为中心的商品经济圈。商品经济的发展把农民卷入了商品生产的环流。</em></p><p>在文化方面,明治维新推行全盘西化,在普及西方主流文化的同时,对传统文化的打击亦非常严重。从廃城令,废除旧历,以至到神佛分离等,一系列的政策从根本上改变了日本社会并影响至今。</p><p>然而,明治维新并非完全消极。虽然它对传统文化造成了冲击,但也催生了许多新的文化形式。例如,&quot;明治维新被认为是&quot;传统&quot;日本和&quot;现代&quot;日本的分界线,虽然它确实带来了一个新政府,引入了改变日本社会的激进政策,但它本身不是一个特别激烈的事件,在维新前和维新后的日本之间没有太大的割裂感&quot;。</p><p>四、大正民主与昭和战争(20世纪初-20世纪中)</p><p>(一)接受西方民主思想,参与国际事务</p><p>大正民主是指日本自1912年桂内阁总辞至1932年犬养毅遭暗杀的20年间,所<em class='similar'>推行之符合现代民主的政治体制及政策。在这个时期,日本内阁多为政党政治的互动,内政上以民意所趋为主。外交则采取对日苏友好等策略。</em></p><p>然而,随着昭和时代的到来,日本的政治环境发生了变化。尽管大正时期的民主理念仍在一部分人中流传,但随着军国主义的崛起和第二次世界大战的爆发,日本的国际事务参与也发生了变化。在战争期间,日本不仅积极参与国际冲突,而且在其殖民地和占领区实施了严格的军事统治。</p><p>总的来说,大正民主标志着日本接受西方民主思想并积极参与国际事务的一个时期,而昭和战争则标志着这一进程的中断和转变。然而,战后日本重新回归了民主制度,并在国际事务中扮演了更为积极的角色。</p><p>(二)国际政治</p><p>大正时代(1912年-1926年)是日本历史上的一个重要时期,被称为&quot;大正民主&quot;,这一时期的日本社会和文化发展十分活跃。这个时期的日本社会,实际上是拥有知识的上层阶级操纵政治,自己享受稳定的身份与&quot;文化&quot;,而军人抬头后的昭和时期是突然发生的异常状况。</p><p>大正时代的日本经济<em class='similar'>取得了令人瞩目的高速增长,在此基础上,日本诞生了大量生产和大量消费的萌芽。</em>这个时期的日本<em class='similar'>文化有三个明显的特征,即文化的商品化、大众化和中立性。</em>例如,<em class='similar'>报纸杂志、新闻出版,虽然在此前已经出现,且具有相当规模,但真正成为现代意义上的大众传媒,却是在这个时期。</em></p><p>然而,随着昭和时代(1926年-1989年)的到来,日本的政治环境发生了变化。尽管大正时期的民主理念仍在一部分人中流传,但随着军国主义的崛起和第二次世界大战的爆发,日本社会和文化也发生了变化。在战争期间,日本不仅积极参与国际冲突,而且在其殖民地和占领区实施了严格的军事统治。</p><p>五、大正民主与昭和战争(20世纪初-20世纪中)</p><p>(一)后冷战时期:崛起的中国,朝鲜半岛问题,与美国的同盟关系</p><p><em class='similar'>冷战时期,日本是美国在东亚太平洋地区的重要战略前哨。历届美国政府都非常重视对日关系,将加强与日本的关系作为其东亚政策的核心</em>1。在这个时期<em class='similar'>,日本一方面积极支持并配合美国的冷战战略,包括对中国实施经济封锁、直接和间接参加朝鲜战争等,另一方面利用美国的经济援助全力发展经济</em>。</p><p>朝鲜半岛问题也是一个重要的议题。基于半岛内部的和解,以及整个东亚地区的和解趋势,中国开始与韩国建立外交关系。但美国以核问题为切入点再次介入半岛内部事务,阻止了半岛南北的和解进程。</p><p>至于日本与美国的同盟关系,<em class='similar'>冷战结束后,美日、美韩同盟并没有随着冷战的结束而消失反而得到进一步的加强,美国分别对这两个同盟进行调整和重新定义。911后,美国进行全球军事战略调整,此后的美日同盟与美韩同盟更是表现出诸多的差异性。</em></p><p>(二)后战争时期对日本社会和文化的影响</p><p>战后时期对日本社会和文化的影响是深远的。在战后,日本经历了巨大的变革,从一个战败国家走向了现代化的发展。这个时期,日本迅速恢复了战争带来的破坏,并在经济、政治和社会方面取得了重大的成就。在这个过程中,文化起到了至关重要的作用。</p><p>日本文化的发展受到了传统价值观与现代化的冲突的影响。例如,日本在对抗空袭过程中又一次使用了精神原子弹,甚至给消防员配备了武士刀。在那时,不美化战争的作品难以发表,连纸张、颜料都是统制对象。</p><p>更糟糕的是治安维持法的修改,引入预防拘禁制,曾经的马克思主义者走出监狱,便处在警察的监视下。如果要斗垮一个人,只要告密说他有&quot;唯物主义&quot;或者&quot;自由主义&quot;的过去,就很容易使他消失。</p><p>总之,日本国内表面上维护法西斯统治,但到了战争后期,极端的压迫使得他们愈发对日本政府失去信心。遗憾的是,稍有觉醒痕迹的人民很快就死在帝国主义侵略战争中,活下来的人,大多数停留在对统制派的仇恨上。</p><p>关于如何在废墟中建立一个新的国家,人民还没有达成共识。这些影响不仅改变了日本自身,也对周边国家产生了深远影响。</p><p class='uncheck'>参考文献：</p><p class='uncheck'>[1]宋念申. (2018). 发现东亚. 北京: 新星出版社. (p.22)</p><p class='uncheck'>[2]梁昊光.人类命运共同体的实践路径[J].人民论坛,2017(28):46-47.DOI:10.16619/j.cnki.rmlt.2017.28.017.</p><p class='uncheck'>[3]刘国军.中国抗疫实践折射出的制度自信与民族复兴凝聚力[J].西藏发展论坛,2021(04):73-78.</p><p class='uncheck'>[4]李嘉宝. 中国为全球抗疫作出重大贡献[N]. 人民日报海外版,2021-06-17(007).DOI:10.28656/n.cnki.nrmrh.2021.001857.</p><p class='uncheck'>[5]戴维来. 全球治理研究需超越西方理论范式[N]. 中国社会科学报,2022-12-15(003).DOI:10.28131/n.cnki.ncshk.2022.005515.</p>
+                                            </div>
+                                        <!--summary end-->
+                                        <!--xp 20150305 end-->
+                                    </div>
+                                    <!--summary end-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--tab end-->
+                </div>
+                <!--DetailReport end-->
+            </div>
+            <div class="wrapper_con_Bottom"></div>
+        </div>
+        <!--wrapper_con end-->
+    </div>
+    <!--wrapper_topbg end-->
+    <div class="copyright">版权所有 <a href="https://www.paperyy.com" target="_blank">www.paperyy.com</a></div>
+    <script type="text/javascript">
+        $(".recom-row").each(function () {
+            var href = $(this).attr("href");
+            $(this).attr("href", "https://" + domainUrl + href.substring(href.indexOf("/", href.indexOf("//") + 2)));
+        })
+        $(".recommend-img").each(function () {
+            var href = $(this).attr("href");
+            $(this).attr("href", "https://" + domainUrl + href.substring(href.indexOf("/", href.indexOf("//") + 2)));
+        })
+	$(".left_top_btn").each(function () {
+            var href = $(this).attr("href");
+            $(this).attr("href", "https://" + domainUrl + href.substring(href.indexOf("/", href.indexOf("//") + 2)));
+        })
+        var zjkTips = getZjkTipsStr();
+        $(function (){
+            resizeWidth();
+        });
+
+        function resizeWidth() {
+            if($(window).width() > 1515){
+                // showZjkTips();
+            }
+        }
+        var zjkTimer;
+        function showZjkTips(){
+            if(zjkTips) {
+                $(".zjk-tips").text(zjkTips);
+                $('.zjk-tips').show();
+                zjkTimer = setTimeout(function () {
+
+                    $('.zjk-tips').hide();
+                }, 5000);
+            }else{
+                $(".zjk-tips").hide();
+            }
+        }
+        function getZjkTipsStr(){
+            return '勾选自建库查重可极大提高查重精准度哦！'
+        }
+    </script>
+    <script type="text/javascript">
+        $(function(){
+            if(!$('.recommend-img-boximg').length){
+                return
+            }
+            $.ajax({
+                type: "get",
+                url: "https://gateway.ixueshu.com/ad-server/1449266808139870210.jsonp",
+                dataType: 'jsonp',
+                async: false,
+                jsonp: 'jsonpCallback',
+                success: function(data) {
+                    var html = '';
+                    var reportnum = 'YY202311210032081333';
+                    var per = '10';
+                    for(var i=0;i<data.length;i++){
+                        html +=	'<li>'
+                        if(data[i].url){
+                            html += '<a class="recommend-img" href="'+data[i].url.replace("${reportnum!}",reportnum)+'" target="_blank">'
+                        }else{
+                            html += '<a class="recommend-img">'
+                        }
+                        html +=	'<div class="banner_0509" style="background: url('+data[i].image+')">'
+                        if(data[i].depict){
+
+                            html +=	''+data[i].depict.replace("${per}",per)+''
+                        }
+                        html +=	'</div>'
+                        html +=	'</a>'
+                        html +=	'</li>'
+                    }
+                    $('.recommend-img-boximg').html(html);
+                    if(data.length > 1){
+                        jQuery(".recommend-img-box").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"topLoop",autoPlay:true,interTime:6000,pnLoop:true});
+                    }
+                }
+            });
+
+        });
+    </script>
+</div>
+<script>
+    // 20220509
+    $(function (){
+        var similarity = 0.227;
+        var actHref = "https://" + domainUrl + "/member_new/free?index=2";
+        var checkOnlineHref = "https://" + domainUrl + '/online_check/prepare_check/9-94733aa9-d39e-4c13-a68b-deda07bfac48';
+        // if(similarity <= 0.3){
+        //     $(".seal").css({
+        //         top: "44px"
+        //     }).append('<a style="margin-top: 45px;bottom: -45px;width: 116px;height: 32px;background: linear-gradient(270deg, #FF8C8C 0%, #D95E5E 100%);box-shadow: 0px 2px 8px 0px rgba(239, 93, 62, 0.3);border-radius: 8px;border: none;color: #FFFFFF;font-size: 14px;text-align: center;line-height: 32px;position: absolute;right: 4px;" href="'+actHref+'" target="_blank">晒重复率领红包</a>')
+        // }else{
+            $(".seal").css({
+                top: "44px"
+            }).append('<a style="margin-top: 45px;bottom: -45px;width: 116px;height: 32px;background: linear-gradient(270deg, #6B96FF 0%, #5D85E8 100%);box-shadow: 0px 2px 8px 1px rgba(46,105,242,0.3);border-radius: 8px;border: none;color: #FFFFFF;font-size: 14px;text-align: center;line-height: 32px;position: absolute;right: 4px;" href="'+checkOnlineHref+'" target="_blank"><img src="images/check_online_icon1.png" style="margin-right:5px;" />在线改重</a>')
+        // }
+    });
+    function goJC(e){
+        var newWindow = window.open();
+        try{
+            $.ajax({
+                url: "https://" + domainUrl + '/api/user-behavior/user-behavior-collect/3/12',
+                async:true,
+                data:{pageInfo:e}
+            })
+        }
+        catch(err){
+
+        }
+        newWindow.location.href= "https://" + domainUrl + '/check-pay/reduce-pay-task/YY202311210032081333'
+    }
+</script>
+<!--wrapper end-->
+</body>
+</html>
